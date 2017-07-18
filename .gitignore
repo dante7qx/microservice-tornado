@@ -17,6 +17,8 @@
 *.zip
 *.tar.gz
 *.rar
+*.project
+*.classpath
 
 logs/
 target/
