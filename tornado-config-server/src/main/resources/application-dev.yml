@@ -1,0 +1,20 @@
+spring:
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/dante7qx/microservice-tornado.git
+          search-paths:
+            - config-repo
+  rabbitmq:
+    host: ${rabbitmq.host:localhost}
+    port: ${rabbitmq.port:5672}
+    username: ${rabbitmq.username:dante}
+    password: ${rabbitmq.password:123456}
+    virtual-host: ${rabbitmq.vhost:/tornado-config}
+encrypt:
+  keyStore:
+    location: classpath:/server.jks 
+    password: 1234@@qwer       
+    alias: SpiritKey
+    secret: 12,qw,as
