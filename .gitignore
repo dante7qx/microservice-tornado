@@ -18,6 +18,7 @@
 *.tar.gz
 *.rar
 
+logs/
 target/
 .DS_Store
 .settings/
