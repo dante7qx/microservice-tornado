@@ -12,7 +12,7 @@
 	<artifactId>tornado-eureka-server</artifactId>
 	<packaging>jar</packaging>
 	<name>tornado-eureka-server</name>
-	<description>服务发现</description>
+	<description>Eureka Server</description>
 
 	<dependencies>
 		<dependency>
