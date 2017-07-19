@@ -5,7 +5,7 @@ ENV APPS_HOME=/AppServer
 RUN mkdir -p $APPS_HOME/
 WORKDIR $APPS_HOME/
 
-ADD project-config-server-1.0-SNAPSHOT.jar $APPS_HOME/app.jar
+ADD tornado-config-server-1.0.jar $APPS_HOME/app.jar
 ADD run.sh $APPS_HOME/
 
 RUN sh -c 'touch $APPS_HOME/app.jar'

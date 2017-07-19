@@ -33,6 +33,9 @@
 	<modules>
 		<module>tornado-eureka-server</module>
 		<module>tornado-config-server</module>		
+		<module>tornado-common</module>
+		<module>tornado-common-dao</module>
+		<module>tornado-common-api</module>
 	</modules>
 
 	<parent>
