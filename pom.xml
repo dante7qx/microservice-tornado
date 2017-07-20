@@ -39,6 +39,7 @@
 		<module>tornado-common-dao</module>
 		<module>tornado-common-api</module>
 		<module>tornado-sysmgr-dao</module>
+		<module>tornado-sysmgr-api</module>
 	</modules>
 
 	<parent>

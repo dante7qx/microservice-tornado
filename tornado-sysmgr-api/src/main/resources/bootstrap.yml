@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: project-sysmgr-api
+  profiles:
+    active: ${config.profile:dev}
+  cloud:
+    config:
+      profile: ${config.profile:dev}
+      label: ${config.label:v1}
+      discovery:
+        enabled: true
+        service-id: TORNADO-CONFIG-SERVER
+eureka:
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ipAddress}:${server.port}
+  client:
+    service-url:
+      defaultZone: ${eureka.cluster:http://${eureka.host:localhost}:${eureka.port:8761}/eureka/}

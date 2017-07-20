@@ -12,7 +12,12 @@ import com.tornado.commom.dao.exception.TornadoDaoException;
 import com.tornado.sysmgr.dao.TornadoSysMgrDaoApplicationTest;
 import com.tornado.sysmgr.dao.bo.AuthorityRoleBO;
 
-
+/**
+ * AuthorityMapper 测试类
+ * 
+ * @author dante
+ *
+ */
 public class AuthorityMapperTests extends TornadoSysMgrDaoApplicationTest {
 	private static final Logger LOGGER = LoggerFactory.getLogger(AuthorityMapperTests.class);
 	
