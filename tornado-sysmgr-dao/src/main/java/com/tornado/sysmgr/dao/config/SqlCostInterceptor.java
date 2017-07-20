@@ -30,7 +30,7 @@ public class SqlCostInterceptor implements Interceptor {
         } finally {
             long endTime = System.currentTimeMillis();
             long sqlCost = endTime - startTime;
-            LOGGER.debug("执行耗时 ==> {} ms", sqlCost);
+            LOGGER.debug("==> Spend time: {} ms", sqlCost);
         }
     }
 

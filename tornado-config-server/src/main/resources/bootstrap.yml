@@ -1,6 +1,6 @@
 spring:
   application:
-    name: tornado-config-server
+    name: config-server
 eureka:
   instance:
     prefer-ip-address: true
