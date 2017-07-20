@@ -121,4 +121,3 @@ ENGINE=InnoDB
 DEFAULT CHARSET=utf8
 COLLATE=utf8_general_ci
 COMMENT='IP访问规则表' ;
-
