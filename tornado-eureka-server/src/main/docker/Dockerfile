@@ -11,7 +11,7 @@ WORKDIR $APPS_HOME/
 ADD tornado-eureka-server-1.0.jar $APPS_HOME/app.jar
 
 RUN sh -c 'touch $APPS_HOME/app.jar'
-ENV JAVA_OPTS="-Xmx256m -Xms256m"
+ENV JAVA_OPTS="-Xms512m -Xmx512m"
 
 VOLUME ["$APPS_HOME/logs"]
 
