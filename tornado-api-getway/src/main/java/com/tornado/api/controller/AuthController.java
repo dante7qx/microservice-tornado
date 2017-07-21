@@ -25,11 +25,12 @@ public class AuthController {
 	public BaseResp<UserAuthRespDTO> login(@RequestBody UserAuthReqDTO userReqDTO) {
 		BaseResp<UserAuthRespDTO> result = new BaseResp<>();
 		try {
-			userAuthService.login(userReqDTO);
+			UserAuthRespDTO authResp = userAuthService.login(userReqDTO);
+			result.setData(authResp);
 		} catch (TornadoAPIServiceException e) {
 			result.setResultCode(RespCodeEnum.FAILURE.code());
 			LOGGER.error("auth account: {} error.", userReqDTO.getAccount(), e);
 		}
-		return null;
+		return result;
 	}
 }

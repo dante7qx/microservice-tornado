@@ -29,7 +29,7 @@ public class UserDAOTests extends TornadoSysMgrDaoApplicationTest {
 	@Test
 	public void findByAccount() {
 		try {
-			UserPO user = userDAO.findByAccount("test");
+			UserPO user = userDAO.findByAccount("superadmin");
 			Assert.assertNull(user);
 		} catch (TornadoDaoException e) {
 			LOGGER.error("findByAccount error test.", e);

@@ -8,6 +8,7 @@ import com.tornado.commom.dto.req.PageReq;
 import com.tornado.commom.dto.resp.PageResp;
 import com.tornado.common.api.exception.TornadoAPIServiceException;
 import com.tornado.sysmgr.api.TornadoSysMgrAPIApplicationTests;
+import com.tornado.sysmgr.api.dto.resp.UserAuthRespDTO;
 import com.tornado.sysmgr.api.dto.resp.UserRespDTO;
 
 
@@ -15,6 +16,16 @@ public class UserServiceTest extends TornadoSysMgrAPIApplicationTests {
 	
 	@Autowired
 	private UserService userService;
+	
+	@Test
+	public void testLoginAccount() {
+		try {
+			UserAuthRespDTO authUser = userService.loginAccount("superadmin");
+			Assert.assertNotNull(authUser);
+		} catch (TornadoAPIServiceException e) {
+			e.printStackTrace();
+		}
+	}
 	
 	@Test
 	public void testFindPage() {

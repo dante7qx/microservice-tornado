@@ -1,8 +1,10 @@
 zuul:
+  ignore-security-headers: false
   routes:
     sysmgr-api:
       path: /sysmgr/**
-      sensitive-headers: 
+      sensitive-headers: null
+      serviceId: sysmgr-api
 tornado:
   jwt:
     header: Authorization

@@ -66,7 +66,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				HttpMethod.GET,
 				"/"
 			).permitAll()
-			.antMatchers("/auth/**").permitAll()
+			.antMatchers("/auth/**", "**/login/***").permitAll()
 			.anyRequest().authenticated()
 		.and()
 			.addFilterBefore(authenticationTokenFilter(), UsernamePasswordAuthenticationFilter.class)

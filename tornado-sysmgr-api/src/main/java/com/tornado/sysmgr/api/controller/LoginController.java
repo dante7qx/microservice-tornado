@@ -2,9 +2,12 @@ package com.tornado.sysmgr.api.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -58,9 +61,10 @@ public class LoginController {
 	 * @return
 	 */
 	@PostMapping(value = "/login_user_menu/{userId}")
-	public BaseResp<List<UserResourceRespDTO>> loginUserMenu(@PathVariable Long userId) {
+	public BaseResp<List<UserResourceRespDTO>> loginUserMenu(@PathVariable Long userId, HttpServletRequest request) {
 		BaseResp<List<UserResourceRespDTO>> result = new BaseResp<>();
 		try {
+			System.out.println(request.getHeader("Authorization"));
 			List<UserResourceRespDTO> userResources = resourceService.findUserResourceByUserId(userId);
 			result.setData(userResources);
 		} catch (Exception e) {
