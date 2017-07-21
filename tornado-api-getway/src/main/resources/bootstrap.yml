@@ -17,6 +17,8 @@ eureka:
   client:
     service-url:
       defaultZone: ${eureka.cluster:http://${eureka.host:localhost}:${eureka.port:8761}/eureka/}
+zuul:
+  ignore-security-headers: false
 hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 50000
 ribbon: 
   ConnectTimeout: 30000

@@ -65,6 +65,7 @@ public class RoleController {
 	 * @param id
 	 * @return
 	 */
+	@PreAuthorize("hasAuthority('sysmgr.role.query')")
 	@PostMapping(value = "/query_by_id/{id}")
 	public BaseResp<RoleRespDTO> queryByRoleId(@PathVariable Long id) {
 		BaseResp<RoleRespDTO> result = new BaseResp<>();

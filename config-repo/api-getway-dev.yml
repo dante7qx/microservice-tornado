@@ -1,9 +1,8 @@
 zuul:
-  ignore-security-headers: false
   routes:
     sysmgr-api:
       path: /sysmgr/**
-      sensitive-headers: null
+      sensitive-headers: Cookie,Set-Cookie
       serviceId: sysmgr-api
 tornado:
   jwt:
