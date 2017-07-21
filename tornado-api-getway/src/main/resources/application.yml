@@ -1,9 +1,2 @@
 server:
   port: 8080
-  
-tornado:
-  jwt:
-    header: Authorization
-    secret: mySecret        # 解密的key
-    expiration: 604800      # 过期时间（ms），7天
-    tokenHead: "Bearer "   

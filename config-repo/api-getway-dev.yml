@@ -1,0 +1,7 @@
+tornado:
+  jwt:
+    header: Authorization
+    secret: nhsdd
+    expiration: 604800      # 过期时间（ms），7天
+    tokenHead: "Bearer "   
+aa.ss: '{cipher}AQDKBTKwZGBvt4AllFlzjOAn0l/VEMaABVQj2jQ68Y3kdTFYcEVn+T+7cLI5cUuWycIlQUT33cYKIkhUFZQYV9uXIAmXrslTfPiRQuCIZJx+ymQMmfn7holnq0yL7opTDdLL/sWf2JNB2VqqOJWfU94fBhcMtgSCrA01qgyMfHFoHVr+a+2unEawF75ZSlqppPHLU6DsexgbYh9Tsh21l+Sb5ft2EL6Qfs936RWTvgXsy0d9p2cn1zLW1iSdg8jE34t6KUjNFenBQkYSYiE90/Hm8pwcY3aBd3xhhJ0L7kHd9AhqrhJ78F8JsYJG3se1Z1hjJZAwnHIWRtBscjvi2ZuSGmnRmu0yH0IUJyykNZpRS27qVSobWDbeA1oa6VcmBw1+kP6qqQKOOfGRlqNTf0SL'

@@ -14,7 +14,7 @@ spring:
     virtual-host: ${rabbitmq.vhost:/tornado-config}
 encrypt:
   keyStore:
-    location: classpath:/server.jks 
+    location: classpath:server.jks 
     password: 1234@@qwer       
-    alias: SpiritKey
+    alias: TornadoKey
     secret: 12,qw,as
