@@ -1,6 +1,7 @@
 package com.tornado.sysmgr.api.dto.resp;
 
 import java.util.Set;
+import com.google.common.collect.Sets;
 
 import lombok.Data;
 
@@ -18,5 +19,12 @@ public class RoleRespDTO {
 	private Set<Long> authorityIds;
 	private String updateUserName;
 	private String updateDate;
+	
+	public Set<Long> getAuthorityIds() {
+		if(this.authorityIds == null) {
+			this.authorityIds = Sets.newHashSet();
+		}
+		return this.authorityIds;
+	}
 
 }

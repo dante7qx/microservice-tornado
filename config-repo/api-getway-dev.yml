@@ -2,8 +2,7 @@ zuul:
   routes:
     sysmgr-api:
       path: /sysmgr/**
-      sensitive-headers: Cookie,Set-Cookie
-      serviceId: sysmgr-api
+      sensitive-headers: 
 tornado:
   jwt:
     header: Authorization

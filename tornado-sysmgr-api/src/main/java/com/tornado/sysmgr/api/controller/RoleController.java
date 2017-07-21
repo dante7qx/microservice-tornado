@@ -2,12 +2,11 @@ package com.tornado.sysmgr.api.controller;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,6 +20,7 @@ import com.tornado.commom.dto.resp.BaseResp;
 import com.tornado.commom.dto.resp.PageResp;
 import com.tornado.commom.dto.resp.RespCodeEnum;
 import com.tornado.common.api.exception.TornadoAPIServiceException;
+import com.tornado.common.api.security.TornadoPrincipal;
 import com.tornado.sysmgr.api.dto.req.RoleReqDTO;
 import com.tornado.sysmgr.api.dto.resp.AuthorityRoleRespDTO;
 import com.tornado.sysmgr.api.dto.resp.RoleRespDTO;
@@ -65,11 +65,13 @@ public class RoleController {
 	 * @param id
 	 * @return
 	 */
-	@PreAuthorize("hasAuthority('sysmgr.role.query')")
 	@PostMapping(value = "/query_by_id/{id}")
 	public BaseResp<RoleRespDTO> queryByRoleId(@PathVariable Long id) {
 		BaseResp<RoleRespDTO> result = new BaseResp<>();
 		try {
+			
+			Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+			
 			RoleRespDTO roleResp = roleService.findById(id);
 			result.setData(roleResp);
 		} catch (TornadoAPIServiceException e) {
