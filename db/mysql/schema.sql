@@ -111,7 +111,7 @@ DROP TABLE IF EXISTS t_ip_rule;
 CREATE TABLE t_ip_rule (
 	id BIGINT(20) NOT NULL AUTO_INCREMENT,
 	ip varchar(256) NOT NULL COMMENT '客户端IP地址' DEFAULT '',
-	update_user BIGINT NOT NULL COMMENT '更新人',
+	update_user BIGINT NOT NULL DEFAULT 1 COMMENT '更新人',
 	update_date datetime NOT NULL DEFAULT now() COMMENT '更新时间',
 	remark varchar(256) NOT NULL COMMENT '规则描述',
 	active bool NOT NULL COMMENT '是否激活' DEFAULT 0,

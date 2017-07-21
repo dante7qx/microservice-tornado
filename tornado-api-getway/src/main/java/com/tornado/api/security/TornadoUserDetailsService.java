@@ -9,7 +9,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.tornado.api.service.UserService;
+import com.tornado.api.service.UserAuthService;
 import com.tornado.api.vo.LoginUserVO;
 import com.tornado.common.api.exception.TornadoAPIServiceException;
 import com.tornado.common.api.security.TornadoLoginUser;
@@ -22,7 +22,7 @@ public class TornadoUserDetailsService implements UserDetailsService {
 	private Logger LOGGER = LoggerFactory.getLogger(TornadoUserDetailsService.class);
 	
 	@Autowired
-	private UserService userService;
+	private UserAuthService userService;
 
 	@Override
 	public UserDetails loadUserByUsername(String account) throws UsernameNotFoundException {
