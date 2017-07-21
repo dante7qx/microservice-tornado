@@ -14,11 +14,11 @@ import org.springframework.util.CollectionUtils;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import com.tornado.commom.dao.exception.TornadoDaoException;
+import com.tornado.commom.dao.template.TornadoServiceTemplate;
 import com.tornado.commom.dto.req.PageReq;
 import com.tornado.commom.dto.resp.PageResp;
 import com.tornado.commom.util.DateUtils;
 import com.tornado.common.api.exception.TornadoAPIServiceException;
-import com.tornado.common.api.template.TornadoServiceTemplate;
 import com.tornado.sysmgr.api.constant.UserConsts;
 import com.tornado.sysmgr.api.dto.req.UserModifyPasswordReqDTO;
 import com.tornado.sysmgr.api.dto.req.UserReqDTO;
@@ -49,7 +49,7 @@ public class UserServiceImpl extends TornadoServiceTemplate<UserReqDTO, UserResp
 	 * 分页查询用户
 	 */
 	@Override
-	public PageResp<UserRespDTO> findPage(PageReq pageReq) throws TornadoAPIServiceException {
+	public PageResp<UserRespDTO> findPage(PageReq pageReq) {
 		return super.findPage(pageReq);
 	}
 
@@ -75,7 +75,10 @@ public class UserServiceImpl extends TornadoServiceTemplate<UserReqDTO, UserResp
 		try {
 			UserPO userPO = userDAO.findByAccount(account);
 			userAuthRespDTO = new UserAuthRespDTO();
-			BeanUtils.copyProperties(userPO, userAuthRespDTO);
+			BeanUtils.copyProperties(userPO, userAuthRespDTO, "lastPwdUpdateDate");
+			if (userPO.getUpdateDate() != null) {
+				userAuthRespDTO.setLastPwdUpdateDate(DateUtils.formatDateTime(userPO.getLastPwdUpdateDate()));
+			}
 			Set<RolePO> roles = userPO.getRoles();
 			if (CollectionUtils.isEmpty(roles)) {
 				return userAuthRespDTO;

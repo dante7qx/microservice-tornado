@@ -13,11 +13,11 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
 import com.google.common.collect.Lists;
+import com.tornado.commom.dao.template.TornadoServiceTemplate;
 import com.tornado.commom.dto.req.PageReq;
 import com.tornado.commom.dto.resp.PageResp;
 import com.tornado.commom.util.DateUtils;
 import com.tornado.common.api.exception.TornadoAPIServiceException;
-import com.tornado.common.api.template.TornadoServiceTemplate;
 import com.tornado.sysmgr.api.dto.req.ServiceModuleReqDTO;
 import com.tornado.sysmgr.api.dto.resp.ServiceModuleRespDTO;
 import com.tornado.sysmgr.api.service.ServiceModuleService;
@@ -40,7 +40,7 @@ public class ServiceModuleServiceImpl extends TornadoServiceTemplate<ServiceModu
 	private ServiceModuleDAO serviveModuleDAO;
 	
 	@Override
-	public PageResp<ServiceModuleRespDTO> findPage(PageReq pageReq) throws TornadoAPIServiceException {
+	public PageResp<ServiceModuleRespDTO> findPage(PageReq pageReq) {
 		return super.findPage(pageReq);
 	}
 

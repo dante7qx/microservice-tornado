@@ -1,4 +1,4 @@
-package com.tornado.common.api.template;
+package com.tornado.commom.dao.template;
 
 import java.util.List;
 import java.util.Map;
@@ -16,7 +16,6 @@ import com.google.common.collect.Lists;
 import com.tornado.commom.dao.util.TornadoDaoUtils;
 import com.tornado.commom.dto.req.PageReq;
 import com.tornado.commom.dto.resp.PageResp;
-import com.tornado.common.api.exception.TornadoAPIServiceException;
 
 /**
  * RESTful API 服务层公共模板方法
@@ -40,7 +39,7 @@ public abstract class TornadoServiceTemplate<REQ, RESP, P> {
 	 * @param pageReq
 	 * @return
 	 */
-	protected PageResp<RESP> findPage(PageReq pageReq) throws TornadoAPIServiceException {
+	protected PageResp<RESP> findPage(PageReq pageReq)  {
 		int pageNo = pageReq.getPageNo();
 		int pageSize = pageReq.getPageSize();
 		String sortCol = pageReq.getSort();

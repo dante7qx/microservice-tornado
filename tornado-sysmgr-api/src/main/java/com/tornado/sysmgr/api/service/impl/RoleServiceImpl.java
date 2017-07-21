@@ -16,11 +16,11 @@ import org.springframework.util.CollectionUtils;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import com.tornado.commom.dao.exception.TornadoDaoException;
+import com.tornado.commom.dao.template.TornadoServiceTemplate;
 import com.tornado.commom.dto.req.PageReq;
 import com.tornado.commom.dto.resp.PageResp;
 import com.tornado.commom.util.DateUtils;
 import com.tornado.common.api.exception.TornadoAPIServiceException;
-import com.tornado.common.api.template.TornadoServiceTemplate;
 import com.tornado.sysmgr.api.dto.req.RoleReqDTO;
 import com.tornado.sysmgr.api.dto.resp.AuthorityRoleRespDTO;
 import com.tornado.sysmgr.api.dto.resp.RoleRespDTO;
@@ -49,7 +49,7 @@ public class RoleServiceImpl extends TornadoServiceTemplate<RoleReqDTO, RoleResp
 	private AuthorityMapper authorityMapper;
 
 	@Override
-	public PageResp<RoleRespDTO> findPage(PageReq pageReq) throws TornadoAPIServiceException {
+	public PageResp<RoleRespDTO> findPage(PageReq pageReq)  {
 		return super.findPage(pageReq);
 	}
 

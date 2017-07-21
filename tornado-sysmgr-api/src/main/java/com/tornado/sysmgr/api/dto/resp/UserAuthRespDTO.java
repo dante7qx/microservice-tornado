@@ -19,6 +19,7 @@ public class UserAuthRespDTO {
 	private String password;
 	private String name;
 	private String email;
+	private String lastPwdUpdateDate;
 	private Set<String> authoritys;
 
 	public Set<String> getAuthoritys() {

@@ -18,10 +18,11 @@ public class UserRespDTO {
 	private String account;
 	private String name;
 	private String email;
-	private String updateUserName;
-	private String updateDate;
+	private String lastPwdUpdateDate;
 	private Set<Long> roleIds;
 	private String status;
+	private String updateUserName;
+	private String updateDate;
 
 	public Set<Long> getRoleIds() {
 		if (roleIds == null) {

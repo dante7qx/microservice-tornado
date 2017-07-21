@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: api-getway
+  profiles:
+    active: ${config.profile:dev}
+  cloud:
+    config:
+      profile: ${config.profile:dev}
+      label: ${config.label:v1}
+      discovery:
+        enabled: true
+        service-id: CONFIG-SERVER
+eureka:
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ipAddress}:${server.port}
+  client:
+    service-url:
+      defaultZone: ${eureka.cluster:http://${eureka.host:localhost}:${eureka.port:8761}/eureka/}
+hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 50000
+ribbon: 
+  ConnectTimeout: 30000
+  ReadTimeout: 30000
