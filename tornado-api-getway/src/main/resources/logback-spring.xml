@@ -4,7 +4,7 @@
 		<resetJUL>true</resetJUL>
 	</contextListener>
 	
-	<property name="SERVICE_HOME" value="project-getway-ui"/>
+	<property name="SERVICE_HOME" value="getway-ui"/>
 	<property name="LOG_HOME" value="logs" /> 
 	
 	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
@@ -42,7 +42,7 @@
 		</logger>
 		
 		<!-- Feign Log -->
-		<logger name="com.spirit.project.getway.ui.client.UserFeignClient" level="DEBUG" />
+		<logger name="com.tornado.api.client.UserFeignClient" level="DEBUG" />
 	</springProfile>
 
 	<springProfile name="uat,prod">

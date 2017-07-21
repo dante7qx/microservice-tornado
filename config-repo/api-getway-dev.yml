@@ -1,6 +1,6 @@
 zuul:
   routes:
-    project-sysmgr-ui:
+    sysmgr-api:
       path: /sysmgr/**
       sensitive-headers: 
 tornado:
