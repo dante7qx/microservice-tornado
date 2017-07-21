@@ -9,7 +9,7 @@ spring:
       label: ${config.label:v1}
       discovery:
         enabled: true
-        service-id: TORNADO-CONFIG-SERVER
+        service-id: CONFIG-SERVER
 eureka:
   instance:
     prefer-ip-address: true
