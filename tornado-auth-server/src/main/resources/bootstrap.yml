@@ -1,6 +1,6 @@
 spring:
   application:
-    name: api-getway
+    name: auth-server
   profiles:
     active: ${config.profile:dev}
   cloud:
@@ -17,10 +17,3 @@ eureka:
   client:
     service-url:
       defaultZone: ${eureka.cluster:http://${eureka.host:localhost}:${eureka.port:8761}/eureka/}
-zuul:
-  ignore-security-headers: false
-  sensitive-headers: Cookie,Set-Cookie
-hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 50000
-ribbon: 
-  ConnectTimeout: 30000
-  ReadTimeout: 30000

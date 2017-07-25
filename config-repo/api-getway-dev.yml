@@ -2,7 +2,8 @@ zuul:
   routes:
     sysmgr-api:
       path: /sysmgr/**
-      sensitive-headers: 
+    auth-server:
+      path: /authserver/**
 tornado:
   jwt:
     header: Authorization
