@@ -5,6 +5,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -46,6 +47,7 @@ public class RoleController {
 	 * @param pageReq
 	 * @return
 	 */
+	@PreAuthorize("hasAuthority('sysmgr.role.query')")
 	@PostMapping(value = "/query_page")
 	public BaseResp<PageResp<RoleRespDTO>> queryRolePage(@RequestBody PageReq pageReq) {
 		BaseResp<PageResp<RoleRespDTO>> result = new BaseResp<>();
@@ -65,13 +67,11 @@ public class RoleController {
 	 * @param id
 	 * @return
 	 */
+	@PreAuthorize("hasAuthority('sysmgr.role.query')")
 	@PostMapping(value = "/query_by_id/{id}")
 	public BaseResp<RoleRespDTO> queryByRoleId(@PathVariable Long id) {
 		BaseResp<RoleRespDTO> result = new BaseResp<>();
 		try {
-			
-			Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-			
 			RoleRespDTO roleResp = roleService.findById(id);
 			result.setData(roleResp);
 		} catch (TornadoAPIServiceException e) {
@@ -86,6 +86,7 @@ public class RoleController {
 	 * 
 	 * @return
 	 */
+	@PreAuthorize("hasAuthority('sysmgr.role.query')")
 	@PostMapping(value = "/query_all_role")
 	public BaseResp<List<RoleRespDTO>> queryAllRole() {
 		BaseResp<List<RoleRespDTO>> result = new BaseResp<>();
@@ -105,6 +106,7 @@ public class RoleController {
 	 * @param id
 	 * @return
 	 */
+	@PreAuthorize("hasAuthority('sysmgr.role.query')")
 	@PostMapping(value = "/query_authority_role_by_id/{id}")
 	public BaseResp<List<AuthorityRoleRespDTO>> queryByAuthorityRoleId(@PathVariable Long id) {
 		BaseResp<List<AuthorityRoleRespDTO>> result = new BaseResp<>();
@@ -124,6 +126,7 @@ public class RoleController {
 	 * @param roleReqDto
 	 * @return
 	 */
+	@PreAuthorize("hasAuthority('sysmgr.role.update')")
 	@PostMapping("/add")
 	public BaseResp<RoleRespDTO> addRole(@RequestBody RoleReqDTO roleReqDto) {
 		BaseResp<RoleRespDTO> result = new BaseResp<>();
@@ -147,6 +150,7 @@ public class RoleController {
 	 * @param roleReqDto
 	 * @return
 	 */
+	@PreAuthorize("hasAuthority('sysmgr.role.update')")
 	@PostMapping("/update")
 	public BaseResp<RoleRespDTO> updateRole(@RequestBody RoleReqDTO roleReqDto) {
 		BaseResp<RoleRespDTO> result = new BaseResp<>();
@@ -170,6 +174,7 @@ public class RoleController {
 	 * @param id
 	 * @return
 	 */
+	@PreAuthorize("hasAuthority('sysmgr.role.delete')")
 	@DeleteMapping(value = "/delete_by_id/{id}")
 	@SuppressWarnings("rawtypes")
 	public BaseResp deleteByRoleId(@PathVariable Long id) {

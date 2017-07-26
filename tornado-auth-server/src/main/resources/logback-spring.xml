@@ -36,9 +36,10 @@
 		<logger name="org.hibernate.type.descriptor.sql.BasicBinder" level="TRACE" />
 		<logger name="org.hibernate.type.descriptor.sql.BasicExtractor" level="INFO" />
 		<logger name="com.netflix.discovery.TimedSupervisorTask" level="OFF" additivity="false"/>
-		<logger name="com.spirit.project" level="DEBUG" additivity="false">
+		<logger name="com.tornado.authserver" level="DEBUG" additivity="false">
 			<appender-ref ref="STDOUT" />
 		</logger>
+		<logger name="com.tornado.authserver.mapper" level="DEBUG" />
 	</springProfile>
 
 	<springProfile name="uat,prod">

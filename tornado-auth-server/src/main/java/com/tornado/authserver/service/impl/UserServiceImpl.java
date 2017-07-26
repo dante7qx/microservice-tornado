@@ -4,6 +4,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,11 +18,13 @@ import com.tornado.authserver.mapper.UserMapper;
 import com.tornado.authserver.service.UserService;
 import com.tornado.authserver.util.EncryptUtils;
 import com.tornado.commom.dao.exception.TornadoDaoException;
+import com.tornado.common.api.constant.RedisCacheConsts;
 import com.tornado.common.api.exception.TornadoAPIServiceException;
 import com.tornado.common.api.security.JwtTokenUtils;
 
 @Service
 @Transactional(readOnly = true)
+@CacheConfig(cacheNames=RedisCacheConsts.FIND_USER_AUTH_CACHE)
 public class UserServiceImpl implements UserService {
 
 	private static final Logger Logger = LoggerFactory.getLogger(UserServiceImpl.class);
@@ -31,6 +35,7 @@ public class UserServiceImpl implements UserService {
 	private JwtTokenUtils jwtTokenUtils;
 	
 	@Override
+	@Cacheable(key="caches[0].name.concat('_').concat(#account)")
 	public UserRespDTO findByAccount(String account) throws TornadoAPIServiceException {
 		UserRespDTO userRespDTO;
 		try {

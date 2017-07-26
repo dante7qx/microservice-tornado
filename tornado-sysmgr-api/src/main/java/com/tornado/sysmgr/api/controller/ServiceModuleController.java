@@ -5,6 +5,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -42,6 +43,7 @@ public class ServiceModuleController {
 	 * @param pageReq
 	 * @return
 	 */
+	@PreAuthorize("hasAuthority('sysmgr.servicemodule.query')")
 	@PostMapping(value = "/query_page")
 	public BaseResp<PageResp<ServiceModuleRespDTO>> queryServiceModulePage(@RequestBody PageReq pageReq) {
 		BaseResp<PageResp<ServiceModuleRespDTO>> result = new BaseResp<>();
@@ -61,6 +63,7 @@ public class ServiceModuleController {
 	 * @param id
 	 * @return
 	 */
+	@PreAuthorize("hasAuthority('sysmgr.servicemodule.query')")
 	@PostMapping(value = "/query_by_id/{id}")
 	public BaseResp<ServiceModuleRespDTO> queryByServiceModuleId(@PathVariable Long id) {
 		BaseResp<ServiceModuleRespDTO> result = new BaseResp<>();
@@ -79,6 +82,7 @@ public class ServiceModuleController {
 	 * 
 	 * @return
 	 */
+	@PreAuthorize("hasAuthority('sysmgr.servicemodule.query')")
 	@PostMapping(value = "/query_all")
 	public BaseResp<List<ServiceModuleRespDTO>> queryAllServiceModule() {
 		BaseResp<List<ServiceModuleRespDTO>> result = new BaseResp<>();
@@ -98,6 +102,7 @@ public class ServiceModuleController {
 	 * @param serviceModuleReqDto
 	 * @return
 	 */
+	@PreAuthorize("hasAuthority('sysmgr.servicemodule.update')")
 	@PostMapping("/add")
 	public BaseResp<ServiceModuleRespDTO> addServiceModule(@RequestBody ServiceModuleReqDTO serviceModuleReqDto) {
 		BaseResp<ServiceModuleRespDTO> result = new BaseResp<>();
@@ -121,6 +126,7 @@ public class ServiceModuleController {
 	 * @param serviceModuleReqDto
 	 * @return
 	 */
+	@PreAuthorize("hasAuthority('sysmgr.servicemodule.update')")
 	@PostMapping("/update")
 	public BaseResp<ServiceModuleRespDTO> updateServiceModule(@RequestBody ServiceModuleReqDTO serviceModuleReqDto) {
 		BaseResp<ServiceModuleRespDTO> result = new BaseResp<>();
@@ -145,6 +151,7 @@ public class ServiceModuleController {
 	 * @return
 	 */
 	@SuppressWarnings("rawtypes")
+	@PreAuthorize("hasAuthority('sysmgr.servicemodule.delete')")
 	@DeleteMapping(value = "/delete_by_id/{id}")
 	public BaseResp deleteByServiceModuleId(@PathVariable Long id) {
 		BaseResp result = new BaseResp();

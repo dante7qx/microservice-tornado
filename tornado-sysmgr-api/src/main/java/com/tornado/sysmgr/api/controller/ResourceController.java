@@ -5,6 +5,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -39,6 +40,7 @@ public class ResourceController {
 	 * @param id
 	 * @return
 	 */
+	@PreAuthorize("hasAuthority('sysmgr.resource.query')")
 	@PostMapping("/query_by_id/{id}")
 	public BaseResp<ResourceRespDTO> queryByResourceId(@PathVariable Long id) {
 		BaseResp<ResourceRespDTO> result = new BaseResp<>();
@@ -58,6 +60,7 @@ public class ResourceController {
 	 * @param pid
 	 * @return
 	 */
+	@PreAuthorize("hasAuthority('sysmgr.resource.query')")
 	@PostMapping("/query_by_pid/{pid}")
 	public BaseResp<List<ResourceRespDTO>> queryByResourcePid(@PathVariable Long pid) {
 		BaseResp<List<ResourceRespDTO>> result = new BaseResp<>();
@@ -76,6 +79,7 @@ public class ResourceController {
 	 * 
 	 * @return
 	 */
+	@PreAuthorize("hasAuthority('sysmgr.resource.query')")
 	@PostMapping("/query_root")
 	public BaseResp<List<ResourceRespDTO>> queryRootResource() {
 		BaseResp<List<ResourceRespDTO>> result = new BaseResp<>();
@@ -95,6 +99,7 @@ public class ResourceController {
 	 * @param resourceReq
 	 * @return
 	 */
+	@PreAuthorize("hasAuthority('sysmgr.resource.update')")
 	@PostMapping("/add")
 	public BaseResp<ResourceRespDTO> addResource(@RequestBody ResourceReqDTO resourceReq) {
 		BaseResp<ResourceRespDTO> result = new BaseResp<>();
@@ -114,6 +119,7 @@ public class ResourceController {
 	 * @param resourceReq
 	 * @return
 	 */
+	@PreAuthorize("hasAuthority('sysmgr.resource.update')")
 	@PostMapping("/update")
 	public BaseResp<ResourceRespDTO> updateResource(@RequestBody ResourceReqDTO resourceReq) {
 		BaseResp<ResourceRespDTO> result = new BaseResp<>();
@@ -133,6 +139,7 @@ public class ResourceController {
 	 * @param id
 	 * @return
 	 */
+	@PreAuthorize("hasAuthority('sysmgr.resource.delete')")
 	@DeleteMapping("/delete_by_id/{id}")
 	@SuppressWarnings("rawtypes")
 	public BaseResp deleteById(@PathVariable Long id) {

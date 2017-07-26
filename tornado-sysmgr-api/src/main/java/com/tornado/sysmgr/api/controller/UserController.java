@@ -5,6 +5,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -44,6 +45,7 @@ public class UserController {
 	 * @param pageReq
 	 * @return
 	 */
+	@PreAuthorize("hasAuthority('sysmgr.user.query')")
 	@PostMapping("/query_page")
 	public BaseResp<PageResp<UserRespDTO>> queryUserPage(@RequestBody PageReq pageReq) {
 		BaseResp<PageResp<UserRespDTO>> result = new BaseResp<>();
@@ -63,6 +65,7 @@ public class UserController {
 	 * @param id
 	 * @return
 	 */
+	@PreAuthorize("hasAuthority('sysmgr.user.query')")
 	@PostMapping(value = "/query_by_id/{id}")
 	public BaseResp<UserRespDTO> queryByUserId(@PathVariable Long id) {
 		BaseResp<UserRespDTO> result = new BaseResp<>();
@@ -82,6 +85,7 @@ public class UserController {
 	 * @param userReqDto
 	 * @return
 	 */
+	@PreAuthorize("hasAuthority('sysmgr.user.update')")
 	@PostMapping("/add")
 	public BaseResp<UserRespDTO> addUser(@RequestBody UserReqDTO userReqDto) {
 		BaseResp<UserRespDTO> result = new BaseResp<>();
@@ -105,6 +109,7 @@ public class UserController {
 	 * @param userReqDto
 	 * @return
 	 */
+	@PreAuthorize("hasAuthority('sysmgr.user.update')")
 	@PostMapping("/update")
 	public BaseResp<UserRespDTO> updateUser(@RequestBody UserReqDTO userReqDto) {
 		BaseResp<UserRespDTO> result = new BaseResp<>();
@@ -129,6 +134,7 @@ public class UserController {
 	 * @return
 	 */
 	@SuppressWarnings("rawtypes")
+	@PreAuthorize("hasAuthority('sysmgr.user.delete')")
 	@DeleteMapping(value = "/delete")
 	public BaseResp deleteUser(@RequestBody UserReqDTO userReqDto) {
 		BaseResp result = new BaseResp<>();
@@ -148,6 +154,7 @@ public class UserController {
 	 * @return
 	 */
 	@SuppressWarnings("rawtypes")
+	@PreAuthorize("hasAuthority('sysmgr.user.update')")
 	@PostMapping(value = "/lock_user")
 	public BaseResp lockUser(@RequestBody UserReqDTO userReqDto) {
 		BaseResp result = new BaseResp<>();
@@ -167,6 +174,7 @@ public class UserController {
 	 * @return
 	 */
 	@SuppressWarnings("rawtypes")
+	@PreAuthorize("hasAuthority('sysmgr.user.update')")
 	@PostMapping(value = "/release_lock_user")
 	public BaseResp releaseLockUser(@RequestBody UserReqDTO userReqDto) {
 		BaseResp result = new BaseResp<>();
@@ -185,6 +193,7 @@ public class UserController {
 	 * @param userModifyPasswordReqDTO
 	 * @return
 	 */
+	@PreAuthorize("hasAuthority('sysmgr.user.update')")
 	@PostMapping(value = "/check_password")
 	public BaseResp<Boolean> checkPassword(@RequestBody UserModifyPasswordReqDTO userModifyPasswordReqDTO) {
 		BaseResp<Boolean> result = new BaseResp<Boolean>();
@@ -204,6 +213,7 @@ public class UserController {
 	 * @return
 	 */
 	@SuppressWarnings("rawtypes")
+	@PreAuthorize("hasAuthority('sysmgr.user.update')")
 	@PostMapping(value = "/modify_password")
 	public BaseResp modifyPassword(@RequestBody UserModifyPasswordReqDTO userModifyPasswordReqDTO) {
 		BaseResp result = new BaseResp<>();
@@ -226,6 +236,7 @@ public class UserController {
 	 * @param account
 	 * @return
 	 */
+	@PreAuthorize("hasAuthority('sysmgr.user.query')")
 	@PostMapping(value = "/query_by_account/{account}")
 	public BaseResp<UserRespDTO> queryByAccount(@PathVariable String account) {
 		BaseResp<UserRespDTO> result = new BaseResp<>();
@@ -244,6 +255,7 @@ public class UserController {
 	 * @param roleId
 	 * @return
 	 */
+	@PreAuthorize("hasAuthority('sysmgr.user.query')")
 	@PostMapping(value = "/query_by_role_id/{roleId}")
 	public BaseResp<List<UserRespDTO>> queryByRoleId(@PathVariable Long roleId) {
 		BaseResp<List<UserRespDTO>> result = new BaseResp<>();

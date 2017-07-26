@@ -25,6 +25,16 @@ spring:
         dialect: org.hibernate.dialect.MySQL5Dialect
         enable_lazy_load_no_trans: true
         format_sql: true
+  redis:
+    host: ${redis.host:localhost}
+    password: null
+    port: ${redis.port:6379}
+    database: 1
+    pool:
+      min-idle: 0
+      max-idle: 8
+      max-active: 8
+      max-wait: 1
   rabbitmq:
     host: ${rabbitmq.host:localhost}
     port: ${rabbitmq.port:5672}
@@ -33,7 +43,7 @@ spring:
     virtual-host: ${rabbitmq.vhost:/tornado-config}
 mybatis:
   mapper-locations:
-    - classpath:mybatis/mapper/*.xml
+  - classpath:mybatis/mapper/*.xml
   config-location: classpath:mybatis/mybatis-config.xml
 tornado:
   jwt:

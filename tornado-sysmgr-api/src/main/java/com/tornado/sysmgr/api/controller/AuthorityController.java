@@ -5,6 +5,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -39,6 +40,7 @@ private static final Logger LOGGER = LoggerFactory.getLogger(AuthorityController
 	 * @param id
 	 * @return
 	 */
+	@PreAuthorize("hasAuthority('sysmgr.authority.query')")
 	@PostMapping("/query_by_id/{id}")
 	public BaseResp<AuthorityRespDTO> queryByAuthorityId(@PathVariable Long id) {
 		BaseResp<AuthorityRespDTO> result = new BaseResp<>();
@@ -58,6 +60,7 @@ private static final Logger LOGGER = LoggerFactory.getLogger(AuthorityController
 	 * @param pid
 	 * @return
 	 */
+	@PreAuthorize("hasAuthority('sysmgr.authority.query')")
 	@PostMapping("/query_by_pid/{pid}")
 	public BaseResp<List<AuthorityRespDTO>> queryByAuthorityPid(@PathVariable Long pid) {
 		BaseResp<List<AuthorityRespDTO>> result = new BaseResp<>();
@@ -76,6 +79,7 @@ private static final Logger LOGGER = LoggerFactory.getLogger(AuthorityController
 	 * 
 	 * @return
 	 */
+	@PreAuthorize("hasAuthority('sysmgr.authority.query')")
 	@PostMapping("/query_root")
 	public BaseResp<List<AuthorityRespDTO>> queryRootAuthority() {
 		BaseResp<List<AuthorityRespDTO>> result = new BaseResp<>();
@@ -95,6 +99,7 @@ private static final Logger LOGGER = LoggerFactory.getLogger(AuthorityController
 	 * @param authorityReq
 	 * @return
 	 */
+	@PreAuthorize("hasAuthority('sysmgr.authority.update')")
 	@PostMapping("/add")
 	public BaseResp<AuthorityRespDTO> addAuthority(@RequestBody AuthorityReqDTO authorityReq) {
 		BaseResp<AuthorityRespDTO> result = new BaseResp<>();
@@ -114,6 +119,7 @@ private static final Logger LOGGER = LoggerFactory.getLogger(AuthorityController
 	 * @param authorityReq
 	 * @return
 	 */
+	@PreAuthorize("hasAuthority('sysmgr.authority.update')")
 	@PostMapping("/update")
 	public BaseResp<AuthorityRespDTO> updateAuthority(@RequestBody AuthorityReqDTO authorityReq) {
 		BaseResp<AuthorityRespDTO> result = new BaseResp<>();
@@ -133,6 +139,7 @@ private static final Logger LOGGER = LoggerFactory.getLogger(AuthorityController
 	 * @param id
 	 * @return
 	 */
+	@PreAuthorize("hasAuthority('sysmgr.authority.delete')")
 	@DeleteMapping("/delete_by_id/{id}")
 	@SuppressWarnings("rawtypes")
 	public BaseResp deleteById(@PathVariable Long id) {
