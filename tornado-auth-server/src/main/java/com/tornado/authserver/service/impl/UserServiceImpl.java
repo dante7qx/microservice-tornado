@@ -53,7 +53,7 @@ public class UserServiceImpl implements UserService {
 		final String password = userAuthReq.getPassword().trim();
 		try {
 			UserBO userBO = userMapper.findUserByAccount(account);
-			if(!EncryptUtils.match(EncryptUtils.encrypt(password), userBO.getPassword())) {
+			if(!EncryptUtils.match(password, userBO.getPassword())) {
 				throw new TornadoAPIServiceException("密码不匹配");
 			}
 			if(!UserConsts.STATUS_NORMAL.equalsIgnoreCase(userBO.getStatus())) {
