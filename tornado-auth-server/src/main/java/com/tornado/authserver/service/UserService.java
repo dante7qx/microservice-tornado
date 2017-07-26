@@ -2,7 +2,7 @@ package com.tornado.authserver.service;
 
 import com.tornado.authserver.dto.req.UserAuthReqDTO;
 import com.tornado.authserver.dto.resp.UserAuthRespDTO;
-import com.tornado.authserver.dto.resp.UserRespDTO;
+import com.tornado.authserver.dto.resp.UserSecurityRespDTO;
 import com.tornado.common.api.exception.TornadoAPIServiceException;
 
 /**
@@ -14,15 +14,14 @@ import com.tornado.common.api.exception.TornadoAPIServiceException;
 public interface UserService {
 	
 	/**
-	 * 根据account获取用户
+	 * 根据Id获取用户
 	 * 
-	 * @param account
+	 * @param id
 	 * @return
 	 * @throws TornadoAPIServiceException
 	 */
-	public UserRespDTO findByAccount(String account) throws TornadoAPIServiceException;
+	public UserSecurityRespDTO findById(Long id) throws TornadoAPIServiceException;
 
-	
 	/**
 	 * 用户认证
 	 * 
@@ -32,5 +31,12 @@ public interface UserService {
 	 */
 	public UserAuthRespDTO login(UserAuthReqDTO userAuthReq) throws TornadoAPIServiceException;
 	
-	
+	/**
+	 * 刷新 JWT token
+	 * 
+	 * @param oldToken
+	 * @return
+	 * @throws TornadoAPIServiceException
+	 */
+	public String refreshToken(String oldToken) throws TornadoAPIServiceException;
 }

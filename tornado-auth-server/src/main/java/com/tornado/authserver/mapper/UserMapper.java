@@ -7,4 +7,6 @@ public interface UserMapper {
 	
 	public UserBO findUserByAccount(String account) throws TornadoDaoException;
 	
+	public UserBO findUserById(Long id) throws TornadoDaoException;
+	
 }

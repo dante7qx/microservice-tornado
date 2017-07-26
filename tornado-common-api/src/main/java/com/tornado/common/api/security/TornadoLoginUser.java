@@ -22,7 +22,7 @@ public class TornadoLoginUser implements Serializable {
 	private String name;
 	private String email;
 	private String status;
-	private Date lastUpdateDate;
+	private Date lastPwdUpdateDate;
 	private Set<String> authoritys;
 	
 }

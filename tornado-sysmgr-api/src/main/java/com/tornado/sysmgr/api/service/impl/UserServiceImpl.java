@@ -6,6 +6,8 @@ import java.util.Set;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,6 +20,7 @@ import com.tornado.commom.dao.template.TornadoServiceTemplate;
 import com.tornado.commom.dto.req.PageReq;
 import com.tornado.commom.dto.resp.PageResp;
 import com.tornado.commom.util.DateUtils;
+import com.tornado.common.api.constant.RedisCacheConsts;
 import com.tornado.common.api.exception.TornadoAPIServiceException;
 import com.tornado.sysmgr.api.dto.req.UserModifyPasswordReqDTO;
 import com.tornado.sysmgr.api.dto.req.UserReqDTO;
@@ -40,6 +43,7 @@ import com.tornado.sysmgr.dao.po.UserPO;
  */
 @Service
 @Transactional(readOnly = true)
+@CacheConfig(cacheNames=RedisCacheConsts.FIND_USER_AUTH_CACHE)
 public class UserServiceImpl extends TornadoServiceTemplate<UserReqDTO, UserRespDTO, UserPO> implements UserService {
 
 	@Autowired
@@ -165,6 +169,7 @@ public class UserServiceImpl extends TornadoServiceTemplate<UserReqDTO, UserResp
 	 */
 	@Override
 	@Transactional
+	@CacheEvict(key="caches[0].name.concat('_').concat(#userReqDTO.getId())")
 	public void delete(UserReqDTO userReqDTO) throws TornadoAPIServiceException {
 		UserPO userPO = userDAO.findOne(userReqDTO.getId());
 		userPO.setStatus(UserConsts.STATUS_DEL);
@@ -179,6 +184,7 @@ public class UserServiceImpl extends TornadoServiceTemplate<UserReqDTO, UserResp
 	 */
 	@Override
 	@Transactional
+	@CacheEvict(key="caches[0].name.concat('_').concat(#userReqDTO.getId())")
 	public void lockUser(UserReqDTO userReqDTO) throws TornadoAPIServiceException {
 		UserPO userPO = userDAO.findOne(userReqDTO.getId());
 		userPO.setStatus(UserConsts.STATUS_LOCK);
@@ -225,6 +231,7 @@ public class UserServiceImpl extends TornadoServiceTemplate<UserReqDTO, UserResp
 	 */
 	@Override
 	@Transactional
+	@CacheEvict(key="caches[0].name.concat('_').concat(#userModifyPasswordReqDTO.getId())")
 	public void modifyPassword(UserModifyPasswordReqDTO userModifyPasswordReqDTO) throws TornadoAPIServiceException {
 		UserPO userPO = userDAO.findOne(userModifyPasswordReqDTO.getId());
 		String oldPassword = userModifyPasswordReqDTO.getOldPassword();

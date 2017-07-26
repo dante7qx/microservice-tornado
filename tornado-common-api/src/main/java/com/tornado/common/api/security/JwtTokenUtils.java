@@ -60,16 +60,18 @@ public class JwtTokenUtils implements Serializable {
         return expiration;
     }
     
+    /*
     public String generateToken(UserDetails userDetails) {
         Map<String, Object> claims = Maps.newHashMap();
         claims.put(Claims.SUBJECT, userDetails.getUsername());
         claims.put(Claims.ISSUED_AT, new Date());
         return generateToken(claims);
     }
+    */
     
-    public String generateToken(String account) {
+    public String generateToken(Long id, String account) {
         Map<String, Object> claims = Maps.newHashMap();
-        claims.put(Claims.SUBJECT, account);
+        claims.put(Claims.SUBJECT, account+"||"+id);
         claims.put(Claims.ISSUED_AT, new Date());
         return generateToken(claims);
     }
@@ -132,10 +134,11 @@ public class JwtTokenUtils implements Serializable {
         final String username = getUsernameFromToken(token);
         final Date created = getCreatedDateFromToken(token);
         TornadoLoginUser loginUser = user.getSpiritLoginUser();
-        Date lastPwdUpdateDate = loginUser.getLastUpdateDate();
+        String sub = loginUser.getAccount() + "||" + loginUser.getId();
+        Date lastPwdUpdateDate = loginUser.getLastPwdUpdateDate();
         //final Date expiration = getExpirationDateFromToken(token);
         return (
-                username.equals(loginUser.getAccount())
+                username.equals(sub)
                         && !isTokenExpired(token)
                         && !isCreatedBeforeLastPasswordReset(created, lastPwdUpdateDate));
     }

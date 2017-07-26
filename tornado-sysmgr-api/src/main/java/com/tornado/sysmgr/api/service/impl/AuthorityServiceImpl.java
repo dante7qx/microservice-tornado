@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
@@ -15,6 +16,7 @@ import com.tornado.commom.dao.exception.TornadoDaoException;
 import com.tornado.commom.dto.req.PageReq;
 import com.tornado.commom.dto.resp.PageResp;
 import com.tornado.commom.util.DateUtils;
+import com.tornado.common.api.constant.RedisCacheConsts;
 import com.tornado.common.api.exception.TornadoAPIServiceException;
 import com.tornado.sysmgr.api.dto.req.AuthorityReqDTO;
 import com.tornado.sysmgr.api.dto.resp.AuthorityRespDTO;
@@ -75,12 +77,14 @@ public class AuthorityServiceImpl implements AuthorityService {
 
 	@Override
 	@Transactional
+	@CacheEvict(value=RedisCacheConsts.FIND_USER_AUTH_CACHE, allEntries=true)
 	public AuthorityRespDTO persist(AuthorityReqDTO authorityReqDTO) throws TornadoAPIServiceException {
 		return convertPoToRespDto(authorityDAO.save(convertReqDtoToPo(authorityReqDTO)));
 	}
 
 	@Override
 	@Transactional
+	@CacheEvict(value=RedisCacheConsts.FIND_USER_AUTH_CACHE, allEntries=true)
 	public void deleteById(Long id) throws TornadoAPIServiceException {
 		List<AuthorityPO> authoritys = null;
 		try {

@@ -6,6 +6,7 @@ import java.util.Set;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.jpa.domain.Specification;
@@ -20,6 +21,7 @@ import com.tornado.commom.dao.template.TornadoServiceTemplate;
 import com.tornado.commom.dto.req.PageReq;
 import com.tornado.commom.dto.resp.PageResp;
 import com.tornado.commom.util.DateUtils;
+import com.tornado.common.api.constant.RedisCacheConsts;
 import com.tornado.common.api.exception.TornadoAPIServiceException;
 import com.tornado.sysmgr.api.dto.req.RoleReqDTO;
 import com.tornado.sysmgr.api.dto.resp.AuthorityRoleRespDTO;
@@ -55,6 +57,7 @@ public class RoleServiceImpl extends TornadoServiceTemplate<RoleReqDTO, RoleResp
 
 	@Override
 	@Transactional
+	@CacheEvict(value=RedisCacheConsts.FIND_USER_AUTH_CACHE, allEntries=true)
 	public RoleRespDTO persist(RoleReqDTO roleReqDTO) throws TornadoAPIServiceException {
 		RolePO rolePO = roleDAO.save(convertReqDtoToPo(roleReqDTO));
 		return convertPoToRespDto(rolePO);
@@ -62,6 +65,7 @@ public class RoleServiceImpl extends TornadoServiceTemplate<RoleReqDTO, RoleResp
 
 	@Override
 	@Transactional
+	@CacheEvict(value=RedisCacheConsts.FIND_USER_AUTH_CACHE, allEntries=true)
 	public void deleteById(Long id) throws TornadoAPIServiceException {
 		roleDAO.delete(id);
 	}

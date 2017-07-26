@@ -1,4 +1,4 @@
-package com.tornado.common.api.security;
+package com.tornado.authserver.security;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,10 +10,12 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import com.tornado.authserver.dto.resp.UserSecurityRespDTO;
+import com.tornado.authserver.service.UserService;
 import com.tornado.commom.util.DateUtils;
 import com.tornado.common.api.exception.TornadoAPIServiceException;
-import com.tornado.common.api.service.UserAuthService;
-import com.tornado.common.api.vo.UserAuthVO;
+import com.tornado.common.api.security.TornadoLoginUser;
+import com.tornado.common.api.security.TornadoPrincipal;
 
 
 @Service
@@ -22,13 +24,14 @@ public class TornadoUserDetailsService implements UserDetailsService {
 	private Logger LOGGER = LoggerFactory.getLogger(TornadoUserDetailsService.class);
 	
 	@Autowired
-	private UserAuthService userAuthService;
+	private UserService userService;
 
 	@Override
 	public UserDetails loadUserByUsername(String account) throws UsernameNotFoundException {
-		UserAuthVO userAuthVO = null;
+		UserSecurityRespDTO userAuthVO = null;
 		try {
-			userAuthVO = userAuthService.findByAccount(account);
+			Long id = Long.parseLong(account.split("||")[1]);
+			userAuthVO = userService.findById(id);
 			if(userAuthVO == null) {
 				throw new UsernameNotFoundException("用户名["+account+"]不存在！");
 			}
@@ -39,7 +42,7 @@ public class TornadoUserDetailsService implements UserDetailsService {
 		return convertToTornadoPrincipal(userAuthVO);
 	}
 
-	private TornadoPrincipal convertToTornadoPrincipal(UserAuthVO userAuthVO) {
+	private TornadoPrincipal convertToTornadoPrincipal(UserSecurityRespDTO userAuthVO) {
 		TornadoLoginUser tornadoLoginUser = new TornadoLoginUser();
 		BeanUtils.copyProperties(userAuthVO, tornadoLoginUser, "lastPwdUpdateDate");
 		if(!StringUtils.isEmpty(userAuthVO.getLastPwdUpdateDate())) {
