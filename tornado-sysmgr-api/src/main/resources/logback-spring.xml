@@ -36,9 +36,11 @@
 		<logger name="org.hibernate.type.descriptor.sql.BasicBinder" level="TRACE" />
 		<logger name="org.hibernate.type.descriptor.sql.BasicExtractor" level="INFO" />
 		<logger name="com.netflix.discovery.TimedSupervisorTask" level="OFF" additivity="false"/>
-		<logger name="com.spirit.project" level="DEBUG" additivity="false">
+		<logger name="com.tornado" level="DEBUG" additivity="false">
 			<appender-ref ref="STDOUT" />
 		</logger>
+		<!-- Feign Log -->
+		<logger name="com.tornado.common.api.client.UserAuthFeignClient" level="DEBUG" />
 	</springProfile>
 
 	<springProfile name="uat,prod">
@@ -57,7 +59,7 @@
 		<logger name="org.springframework" level="INFO" additivity="false">
 			<appender-ref ref="FILE" />
 		</logger>
-		<logger name="com.spirit.project" level="INFO" additivity="false">
+		<logger name="com.tornado" level="INFO" additivity="false">
 			<appender-ref ref="STDOUT" />
 			<appender-ref ref="FILE" />
 		</logger>

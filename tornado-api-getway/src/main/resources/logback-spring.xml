@@ -40,9 +40,6 @@
 		<logger name="org.springframework.beans.factory.annotation.AnnotationBeanWiringInfoResolver" level="DEBUG" additivity="false">
 			<appender-ref ref="STDOUT" />
 		</logger>
-		
-		<!-- Feign Log -->
-		<logger name="com.tornado.api.client.UserFeignClient" level="DEBUG" />
 	</springProfile>
 
 	<springProfile name="uat,prod">

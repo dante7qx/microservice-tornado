@@ -1,4 +1,4 @@
-package com.tornado.common.feignconfig;
+package com.feignconfig;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
