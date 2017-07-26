@@ -19,9 +19,9 @@ import com.tornado.common.api.security.TornadoPrincipal;
 
 
 @Service
-public class TornadoUserDetailsService implements UserDetailsService {
+public class UserAuthDetailsService implements UserDetailsService {
 	
-	private Logger LOGGER = LoggerFactory.getLogger(TornadoUserDetailsService.class);
+	private Logger LOGGER = LoggerFactory.getLogger(UserAuthDetailsService.class);
 	
 	@Autowired
 	private UserService userService;

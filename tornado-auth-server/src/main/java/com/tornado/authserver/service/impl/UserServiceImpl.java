@@ -22,6 +22,7 @@ import com.tornado.authserver.service.UserService;
 import com.tornado.authserver.util.EncryptUtils;
 import com.tornado.commom.dao.exception.TornadoDaoException;
 import com.tornado.commom.util.DateUtils;
+import com.tornado.common.api.constant.JWTConsts;
 import com.tornado.common.api.constant.RedisCacheConsts;
 import com.tornado.common.api.exception.TornadoAPIServiceException;
 import com.tornado.common.api.prop.TornadoProperties;
@@ -100,7 +101,7 @@ public class UserServiceImpl implements UserService {
 		try {
 			final String token = oldToken.substring(tornadoProperties.getJwt().getTokenHead().length());
 			String account = jwtTokenUtils.getUsernameFromToken(token);
-			UserBO userBO = userMapper.findUserById(Long.parseLong(account.split("||")[1]));
+			UserBO userBO = userMapper.findUserById(Long.parseLong(account.split(JWTConsts.TOKEN_SPLIT)[1]));
 			Date lastPwdUpdateDate = DateUtils.parseDateTime(userBO.getLastPwdUpdateDate());
 			if (jwtTokenUtils.canTokenBeRefreshed(token, lastPwdUpdateDate)) {
 				refreshedToken = jwtTokenUtils.refreshToken(token);

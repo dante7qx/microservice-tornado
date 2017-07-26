@@ -19,7 +19,7 @@ import com.tornado.common.api.security.JwtTokenUtils;
 import com.tornado.common.api.security.TornadoUserDetailsService;
 
 
-public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
+public class UserAuthenticationTokenFilter extends OncePerRequestFilter {
 
 	@Autowired
 	private JwtTokenUtils jwtTokenUtils;
