@@ -31,3 +31,7 @@ spring:
     username: ${rabbitmq.username:dante}
     password: ${rabbitmq.password:123456}
     virtual-host: ${rabbitmq.vhost:/tornado-config}
+mybatis:
+  mapper-locations:
+    - classpath:mybatis/mapper/*.xml
+  config-location: classpath:mybatis/mybatis-config.xml

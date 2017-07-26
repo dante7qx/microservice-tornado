@@ -25,7 +25,7 @@
 		</dependency>
 		<dependency>
 			<groupId>com.tornado.cloud</groupId>
-			<artifactId>tornado-sysmgr-dao</artifactId>
+			<artifactId>tornado-common-dao</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 		<dependency>
