@@ -17,6 +17,7 @@ import com.tornado.authserver.dto.resp.UserRespDTO;
 import com.tornado.authserver.service.UserService;
 import com.tornado.commom.dto.resp.BaseResp;
 import com.tornado.commom.dto.resp.RespCodeEnum;
+import com.tornado.common.api.constant.JWTConsts;
 import com.tornado.common.api.exception.TornadoAPIServiceException;
 import com.tornado.common.api.prop.TornadoProperties;
 
@@ -90,7 +91,7 @@ public class UserAuthController {
 	public BaseResp<UserRespDTO> queryByAccount(@PathVariable String account) {
 		BaseResp<UserRespDTO> result = new BaseResp<>();
 		try {
-			Long id = Long.parseLong(account.split("||")[1]);
+			Long id = Long.parseLong(account.split(JWTConsts.TOKEN_SPLIT)[1]);
 			UserRespDTO userResp = userAuthService.findById(id);
 			result.setData(userResp);
 		} catch (TornadoAPIServiceException e) {

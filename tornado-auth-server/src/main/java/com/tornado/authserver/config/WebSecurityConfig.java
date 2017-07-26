@@ -12,9 +12,9 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import com.tornado.common.api.security.JwtAuthenticationTokenFilter;
+import com.tornado.authserver.security.UserAuthDetailsService;
+import com.tornado.authserver.security.UserAuthenticationTokenFilter;
 import com.tornado.common.api.security.JwtEntryPoint;
-import com.tornado.common.api.security.TornadoUserDetailsService;
 
 
 @Configuration
@@ -28,8 +28,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	}
 	
 	@Bean
-	public TornadoUserDetailsService userDetailsService() {
-		return new TornadoUserDetailsService();
+	public UserAuthDetailsService userDetailsService() {
+		return new UserAuthDetailsService();
 	}
 	
 	@Bean
@@ -46,8 +46,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	}
 	
 	@Bean
-    public JwtAuthenticationTokenFilter authenticationTokenFilter() throws Exception {
-        return new JwtAuthenticationTokenFilter();
+    public UserAuthenticationTokenFilter authenticationTokenFilter() throws Exception {
+        return new UserAuthenticationTokenFilter();
     }
 	
 	@Override

@@ -13,6 +13,7 @@ import org.springframework.util.StringUtils;
 import com.tornado.authserver.dto.resp.UserSecurityRespDTO;
 import com.tornado.authserver.service.UserService;
 import com.tornado.commom.util.DateUtils;
+import com.tornado.common.api.constant.JWTConsts;
 import com.tornado.common.api.exception.TornadoAPIServiceException;
 import com.tornado.common.api.security.TornadoLoginUser;
 import com.tornado.common.api.security.TornadoPrincipal;
@@ -30,7 +31,7 @@ public class UserAuthDetailsService implements UserDetailsService {
 	public UserDetails loadUserByUsername(String account) throws UsernameNotFoundException {
 		UserSecurityRespDTO userAuthVO = null;
 		try {
-			Long id = Long.parseLong(account.split("||")[1]);
+			Long id = Long.parseLong(account.split(JWTConsts.TOKEN_SPLIT)[1]);
 			userAuthVO = userService.findById(id);
 			if(userAuthVO == null) {
 				throw new UsernameNotFoundException("用户名["+account+"]不存在！");

@@ -16,7 +16,6 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import com.tornado.common.api.prop.TornadoProperties;
 import com.tornado.common.api.security.JwtTokenUtils;
-import com.tornado.common.api.security.TornadoUserDetailsService;
 
 
 public class UserAuthenticationTokenFilter extends OncePerRequestFilter {
@@ -24,7 +23,7 @@ public class UserAuthenticationTokenFilter extends OncePerRequestFilter {
 	@Autowired
 	private JwtTokenUtils jwtTokenUtils;
 	@Autowired
-	private TornadoUserDetailsService tornadoUserDetailsService;
+	private UserAuthDetailsService userAuthDetailsService;
 	@Autowired
 	private TornadoProperties tornadoProperties;
 	
@@ -43,7 +42,7 @@ public class UserAuthenticationTokenFilter extends OncePerRequestFilter {
 
 			if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
 
-				UserDetails userDetails = this.tornadoUserDetailsService.loadUserByUsername(username);
+				UserDetails userDetails = userAuthDetailsService.loadUserByUsername(username);
 
 				if (jwtTokenUtils.validateToken(authToken, userDetails)) {
 					UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(

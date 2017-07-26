@@ -15,5 +15,5 @@ public final class JWTConsts {
 	/**
 	 * JWT Sub 分隔符
 	 */
-	public static final String TOKEN_SPLIT = "&";
+	public static final String TOKEN_SPLIT = ",";
 }
