@@ -23,6 +23,11 @@
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-feign</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>com.tornado.cloud</groupId>
+			<artifactId>tornado-common</artifactId>
+			<version>${project.version}</version>
+		</dependency>
 	</dependencies>
 
 	<build>

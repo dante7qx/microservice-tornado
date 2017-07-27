@@ -4,3 +4,4 @@ zuul:
       path: /sysmgr/**
     auth-server:
       path: /authserver/**
+ip.filter: true
