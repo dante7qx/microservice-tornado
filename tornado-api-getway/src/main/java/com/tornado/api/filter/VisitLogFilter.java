@@ -1,7 +1,7 @@
 package com.tornado.api.filter;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.OutputStream;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -49,17 +49,15 @@ public class VisitLogFilter extends ZuulFilter {
         final String header = request.getHeader("Authorization");
         String date = DateUtils.getCurrentDatetime();
         LOGGER.debug("Request Header {}", header);
-        LOGGER.info("IP {} at {} request {} method {}", ip, date, requestUri, method);
+        LOGGER.info("IP [{}] at [{}] request [{}] method [{}]", ip, date, requestUri, method);
         if(!validClientIP(ip)) {
         	HttpServletResponse response = ctx.getResponse();
 			try {
 				response.setStatus(HttpServletResponse.SC_FORBIDDEN);
 				response.setContentType("application/json;charset=utf-8");
 				response.setCharacterEncoding("UTF-8");
-				PrintWriter pw = response.getWriter();
-				pw.write("Illegal client.");
-				pw.flush();
-				pw.close();
+				response.getOutputStream().write("Illegal client.".getBytes());
+				response.flushBuffer();
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}
