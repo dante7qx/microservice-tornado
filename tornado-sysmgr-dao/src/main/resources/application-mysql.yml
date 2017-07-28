@@ -25,6 +25,10 @@ spring:
         dialect: org.hibernate.dialect.MySQL5Dialect
         enable_lazy_load_no_trans: true
         format_sql: true
+mybatis:
+  mapper-locations:
+  - classpath:mybatis/mapper/*.xml
+  config-location: classpath:mybatis/mybatis-config.xml
 logging:
   level:
     com.tornado.sysmgr.dao.config: DEBUG
