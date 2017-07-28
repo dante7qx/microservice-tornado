@@ -1,7 +1,6 @@
 package com.tornado.api.filter;
 
 import java.io.IOException;
-import java.io.OutputStream;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -33,7 +32,7 @@ public class VisitLogFilter extends ZuulFilter {
 
 	@Override
 	public boolean shouldFilter() {
-		return ipFilter;
+		return true;
 	}
 
 	@Override
@@ -50,7 +49,7 @@ public class VisitLogFilter extends ZuulFilter {
         String date = DateUtils.getCurrentDatetime();
         LOGGER.debug("Request Header {}", header);
         LOGGER.info("IP [{}] at [{}] request [{}] method [{}]", ip, date, requestUri, method);
-        if(!validClientIP(ip)) {
+        if(ipFilter && !validClientIP(ip)) {
         	HttpServletResponse response = ctx.getResponse();
 			try {
 				response.setStatus(HttpServletResponse.SC_FORBIDDEN);
