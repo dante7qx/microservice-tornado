@@ -17,7 +17,8 @@ eureka:
     fetch-registry: false
     service-url:
       defaultZone: http://${eureka.instance.hostname:localhost}:${server.port}/eureka/
-
+  environment: tornado-dev
+  datacenter: eking-caas
 --- 
 spring:
   profiles: cluster1
@@ -30,7 +31,9 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://${eureka.node2}:${server.port}/eureka/,http://${eureka.node3}:${server.port}/eureka/
-
+  environment: tornado-cluster1
+  datacenter: eking-caas
+  
 --- 
 spring:
   profiles: cluster2
@@ -43,7 +46,9 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://${eureka.node1}:${server.port}/eureka/,http://${eureka.node3}:${server.port}/eureka/
-      
+  environment: tornado-cluster2
+  datacenter: eking-caas
+  
 --- 
 spring:
   profiles: cluster3
@@ -56,3 +61,5 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://${eureka.node1}:${server.port}/eureka/,http://${eureka.node2}:${server.port}/eureka/
+  environment: tornado-cluster3
+  datacenter: eking-caas
