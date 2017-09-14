@@ -2,6 +2,7 @@ package com.tornado.authserver.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -65,7 +66,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			.csrf().disable()
 			.exceptionHandling().authenticationEntryPoint(jwtEntryPoint())
 		.and()
-			.authorizeRequests().antMatchers("/auth/**").permitAll()
+			.authorizeRequests()
+			.antMatchers(HttpMethod.OPTIONS).permitAll()
+			.antMatchers("/auth/**").permitAll()
 		.and()
 			.authorizeRequests().anyRequest().authenticated()
 		.and()
